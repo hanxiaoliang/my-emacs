@@ -48,9 +48,11 @@
       (when (not (package-installed-p pkg))
 	(package-install pkg))))
 
+;;优化删除，一次删除所有空白
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 
+;;counsel快捷键配置
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (global-set-key "\C-s" 'swiper)
@@ -69,34 +71,47 @@
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-  
+
+;;隐藏工具栏
 (tool-bar-mode -1)
 
+;;隐藏滚动条
 (scroll-bar-mode -1)
 
 (setq inhibit-splash-screen 1)
 
+;;显示行号
 (global-linum-mode 1)
 
+;;f2打开配置文件
 (defun open-my-init-file()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
+;;自动提示
 (global-company-mode t)
 
+;;修改光标样式
 (setq-default cursor-type 'bar)
 
+;;关闭备份文件
 (setq make-backup-files nil)
 
+;;org mode语法光亮
 (require 'org)
 (setq org-src-fontify-natively t)
 
+;;最近打开文件
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-item 10)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
+;;选中文本输入字符时替换
 (delete-selection-mode 1)
 
+;;默认打开全屏
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
